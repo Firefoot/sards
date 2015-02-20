@@ -24,7 +24,8 @@ displayGeneratorOptions()
 	printf("    [6] Modular Exponentiation     [7] Blum-Blum-Shub\n");
 	printf("    [8] Micali-Schnorr             [9] G Using SHA-1\n\n");
 	printf("   Enter Choice: ");
-	scanf("%d", &option);
+	//scanf("%d", &option);
+	option = 0;
 	printf("\n\n");
 
 	return option;
@@ -43,7 +44,8 @@ generatorOptions(char** streamFile)
 		switch( option ) {
 			case 0:
 				printf("\t\tUser Prescribed Input File: ");
-				scanf("%s", file);
+//				scanf("%s", file);
+				file = "/home/gb/sards/sts-2.1.2/data/data.e";
 				*streamFile = (char*)calloc(200, sizeof(char));
 				sprintf(*streamFile, "%s", file);
 				printf("\n");
@@ -115,7 +117,8 @@ chooseTests()
 	printf("            Enter 0 if you DO NOT want to apply all of the\n");
 	printf("            statistical tests to each sequence and 1 if you DO.\n\n");
 	printf("   Enter Choice: ");
-	scanf("%d", &testVector[0]);
+	testVector[0] = 1;
+	//scanf("%d", &testVector[0]);
 	printf("\n");
 	if ( testVector[0] == 1 )
 		for( i=1; i<=NUMOFTESTS; i++ )
@@ -162,8 +165,9 @@ fixParameters()
 		if ( testVector[TEST_LINEARCOMPLEXITY] == 1 )
 			printf("    [%d] Linear Complexity Test - block length(M):       %d\n", counter++, tp.linearComplexitySequenceLength);
 		printf("\n");
-		printf("   Select Test (0 to continue): ");
-		scanf("%1d", &testid);
+		//printf("   Select Test (0 to continue): ");
+		testid=0;
+		//scanf("%1d", &testid);
 		printf("\n");
 		
 		counter = 0;
@@ -235,7 +239,8 @@ fileBasedBitStreams(char *streamFile)
 	printf("    [0] ASCII - A sequence of ASCII 0's and 1's\n");
 	printf("    [1] Binary - Each byte in data file contains 8 bits of data\n\n");
 	printf("   Select input mode:  ");
-	scanf("%1d", &mode);
+	mode = 1;
+	//scanf("%1d", &mode);
 	printf("\n");
 	if ( mode == 0 ) {
 		if ( (fp = fopen(streamFile, "r")) == NULL ) {

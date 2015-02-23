@@ -62,14 +62,17 @@ main(int argc, char *argv[])
 	int		option;			/* TEMPLATE LENGTH/STREAM LENGTH/GENERATOR*/
 	char	*streamFile;	/* STREAM FILENAME     */
 	
-
+/*****************  GB **************
 	if ( argc != 2 ) {
 		printf("Usage: %s <stream length>\n", argv[0]);
 		printf("   <stream length> is the length of the individual bit stream(s) to be processed\n");
 		return 0;
 	}
-
-	tp.n = atoi(argv[1]);
+*/
+//GB	tp.n = atoi(argv[1]);
+  while ( 1 == 1)
+  {
+	tp.n = 10000;   //GB
 	tp.blockFrequencyBlockLength = 128;
 	tp.nonOverlappingTemplateBlockLength = 9;
 	tp.overlappingTemplateBlockLength = 9;
@@ -78,7 +81,9 @@ main(int argc, char *argv[])
 	tp.linearComplexitySequenceLength = 500;
 	tp.numOfBitStreams = 1;
 	option = generatorOptions(&streamFile);
+//	option = 0;
 	chooseTests();
+//        testVector[0] = 1;  //GB
 	fixParameters();
 	openOutputStreams(option);
 	invokeTestSuite(option, streamFile);
@@ -109,7 +114,8 @@ main(int argc, char *argv[])
 	postProcessResults(option);
 	fclose(summary);
 
-	return 1;
+  }
+  return 1;
 }
 
 void

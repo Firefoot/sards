@@ -3,6 +3,7 @@ U T I L I T I E S
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
 #include <math.h>
 #include <time.h>
@@ -24,7 +25,7 @@ displayGeneratorOptions()
 	printf("    [6] Modular Exponentiation     [7] Blum-Blum-Shub\n");
 	printf("    [8] Micali-Schnorr             [9] G Using SHA-1\n\n");
 	printf("   Enter Choice: ");
-	//scanf("%d", &option);
+//GB	scanf("%d", &option);
 	option = 0;
 	printf("\n\n");
 
@@ -40,12 +41,13 @@ generatorOptions(char** streamFile)
 	FILE	*fp;
 	
 	while ( (option < 0) || (option > NUMOFGENERATORS) ) {
-		option = displayGeneratorOptions();
+//GB		option = displayGeneratorOptions();
+                option = 0;
 		switch( option ) {
 			case 0:
-				printf("\t\tUser Prescribed Input File: ");
-//				scanf("%s", file);
-				file = "/home/gb/sards/sts-2.1.2/data/data.e";
+//GB				printf("\t\tUser Prescribed Input File: ");
+//GB				scanf("%s", file);
+				strcpy(file, "data/data.e");
 				*streamFile = (char*)calloc(200, sizeof(char));
 				sprintf(*streamFile, "%s", file);
 				printf("\n");
@@ -56,7 +58,7 @@ generatorOptions(char** streamFile)
 				else
 					fclose(fp);
 				break;
-			case 1:
+/*  GB			case 1:
 				*streamFile = "Linear-Congruential";
 				break;
 			case 2:
@@ -83,15 +85,17 @@ generatorOptions(char** streamFile)
 			case 9:
 				*streamFile = "G using SHA-1";
 				break;
-				
+**/				
 			/* INTRODUCE NEW PRNG NAMES HERE */
 			/*
 			case 10:  *streamFile = "myNewPRNG";
 				break;
 			*/
+/*    GB
 			default:
 				printf("Error:  Out of range - Try again!\n");
 				break;
+*/
 		}
 	}
 	return option;
@@ -102,7 +106,7 @@ void
 chooseTests()
 {
 	int		i;
-	
+/*GB	
 	printf("                S T A T I S T I C A L   T E S T S\n");
 	printf("                _________________________________\n\n");
 	printf("    [01] Frequency                       [02] Block Frequency\n");
@@ -117,8 +121,9 @@ chooseTests()
 	printf("            Enter 0 if you DO NOT want to apply all of the\n");
 	printf("            statistical tests to each sequence and 1 if you DO.\n\n");
 	printf("   Enter Choice: ");
+*/
+//GB	scanf("%d", &testVector[0]);
 	testVector[0] = 1;
-	//scanf("%d", &testVector[0]);
 	printf("\n");
 	if ( testVector[0] == 1 )
 		for( i=1; i<=NUMOFTESTS; i++ )
@@ -150,6 +155,7 @@ fixParameters()
 		
 	do {
 		counter = 1;
+/*  GB
 		printf("        P a r a m e t e r   A d j u s t m e n t s\n");
 		printf("        -----------------------------------------\n");
 		if ( testVector[TEST_BLOCK_FREQUENCY] == 1 )
@@ -164,10 +170,12 @@ fixParameters()
 			printf("    [%d] Serial Test - block length(m):                  %d\n", counter++, tp.serialBlockLength);
 		if ( testVector[TEST_LINEARCOMPLEXITY] == 1 )
 			printf("    [%d] Linear Complexity Test - block length(M):       %d\n", counter++, tp.linearComplexitySequenceLength);
+
 		printf("\n");
-		//printf("   Select Test (0 to continue): ");
-		testid=0;
-		//scanf("%1d", &testid);
+		printf("   Select Test (0 to continue): ");
+*/
+//GB		scanf("%1d", &testid);
+		testid = 0;
 		printf("\n");
 		
 		counter = 0;
@@ -234,13 +242,14 @@ fileBasedBitStreams(char *streamFile)
 {
 	FILE	*fp;
 	int		mode;
-	
+/*	
 	printf("   Input File Format:\n");
 	printf("    [0] ASCII - A sequence of ASCII 0's and 1's\n");
 	printf("    [1] Binary - Each byte in data file contains 8 bits of data\n\n");
 	printf("   Select input mode:  ");
-	mode = 1;
-	//scanf("%1d", &mode);
+*/
+//GB	scanf("%1d", &mode);
+	mode = 0;
 	printf("\n");
 	if ( mode == 0 ) {
 		if ( (fp = fopen(streamFile, "r")) == NULL ) {
@@ -298,7 +307,7 @@ readBinaryDigitsInASCIIFormat(FILE *fp, char *streamFile)
 	free(epsilon);
 }
 
-
+// GB The following function needs to be modified to fit data streaming in from /dev/stdin
 void
 readHexDigitsInBinaryFormat(FILE *fp)
 {
@@ -408,8 +417,9 @@ openOutputStreams(int option)
 				numOfOpenFiles++;
 		}
 	}
-	printf("   How many bitstreams? ");
-	scanf("%d", &numOfBitStreams);
+//GB	printf("   How many bitstreams? ");
+//GB	scanf("%d", &numOfBitStreams);
+	numOfBitStreams = 10;   //GB
 	tp.numOfBitStreams = numOfBitStreams;
 	printf("\n");
 }

@@ -27,7 +27,7 @@ displayGeneratorOptions()
 	printf("   Enter Choice: ");
 //GB	scanf("%d", &option);
 	option = 0;
-	printf("\n\n");
+//GB	printf("\n\n");
 
 	return option;
 }
@@ -50,7 +50,7 @@ generatorOptions(char** streamFile)
 				strcpy(file, "data/data.e");
 				*streamFile = (char*)calloc(200, sizeof(char));
 				sprintf(*streamFile, "%s", file);
-				printf("\n");
+//GB				printf("\n");
 				if ( (fp = fopen(*streamFile, "r")) == NULL ) {
 					printf("File Error:  file %s could not be opened.\n",  *streamFile);
 					exit(-1);
@@ -124,7 +124,7 @@ chooseTests()
 */
 //GB	scanf("%d", &testVector[0]);
 	testVector[0] = 1;
-	printf("\n");
+//	printf("\n");
 	if ( testVector[0] == 1 )
 		for( i=1; i<=NUMOFTESTS; i++ )
 			testVector[i] = 1;
@@ -137,7 +137,7 @@ chooseTests()
 		printf("      ");
 		for ( i=1; i<=NUMOFTESTS; i++ ) 
 			scanf("%1d", &testVector[i]);
-		printf("\n\n");
+//GB		printf("\n\n");
 	}
 }
 
@@ -176,7 +176,7 @@ fixParameters()
 */
 //GB		scanf("%1d", &testid);
 		testid = 0;
-		printf("\n");
+//GB		printf("\n");
 		
 		counter = 0;
 		if ( testVector[TEST_BLOCK_FREQUENCY] == 1 ) {
@@ -184,7 +184,7 @@ fixParameters()
 			if ( counter == testid ) {
 				printf("   Enter Block Frequency Test block length: ");
 				scanf("%d", &tp.blockFrequencyBlockLength);
-				printf("\n");
+//GB				printf("\n");
 				continue;
 			}
 		}
@@ -193,7 +193,7 @@ fixParameters()
 			if ( counter == testid ) {
 				printf("   Enter NonOverlapping Template Test block Length: ");
 				scanf("%d", &tp.nonOverlappingTemplateBlockLength);
-				printf("\n");
+//GB				printf("\n");
 				continue;
 			}
 		}
@@ -202,7 +202,7 @@ fixParameters()
 			if ( counter == testid ) {
 				printf("   Enter Overlapping Template Test block Length: ");
 				scanf("%d", &tp.overlappingTemplateBlockLength);
-				printf("\n");
+//GB				printf("\n");
 				continue;
 			}
 		}
@@ -211,7 +211,7 @@ fixParameters()
 			if ( counter == testid ) {
 				printf("   Enter Approximate Entropy Test block Length: ");
 				scanf("%d", &tp.approximateEntropyBlockLength);
-				printf("\n");
+//GB				printf("\n");
 				continue;
 			}
 		}
@@ -220,7 +220,7 @@ fixParameters()
 			if ( counter == testid ) {
 				printf("   Enter Serial Test block Length: ");
 				scanf("%d", &tp.serialBlockLength);
-				printf("\n");
+//GB				printf("\n");
 				continue;
 			}
 		}
@@ -229,7 +229,7 @@ fixParameters()
 			if ( counter == testid ) {
 				printf("   Enter Linear Complexity Test block Length: ");
 				scanf("%d", &tp.linearComplexitySequenceLength);
-				printf("\n");
+//GB				printf("\n");
 				continue;
 			}
 		}
@@ -249,8 +249,8 @@ fileBasedBitStreams(char *streamFile)
 	printf("   Select input mode:  ");
 */
 //GB	scanf("%1d", &mode);
-	mode = 0;
-	printf("\n");
+	mode = 1; //GB
+//	printf("\n");
 	if ( mode == 0 ) {
 		if ( (fp = fopen(streamFile, "r")) == NULL ) {
 			printf("ERROR IN FUNCTION fileBasedBitStreams:  file %s could not be opened.\n",  streamFile);
@@ -280,7 +280,7 @@ readBinaryDigitsInASCIIFormat(FILE *fp, char *streamFile)
 		printf("Statistical Testing Aborted!\n");
 		return;
 	}
-	printf("     Statistical Testing In Progress.........\n\n");   
+//GB	printf("     Statistical Testing In Progress.........\n\n");   
 	for ( i=0; i<tp.numOfBitStreams; i++ ) {
 		num_0s = 0;
 		num_1s = 0;
@@ -319,7 +319,7 @@ readHexDigitsInBinaryFormat(FILE *fp)
 		return;
 	}
 
-	printf("     Statistical Testing In Progress.........\n\n");   
+//GB	printf("     Statistical Testing In Progress.........\n\n");   
 	for ( i=0; i<tp.numOfBitStreams; i++ ) {
 		num_0s = 0;
 		num_1s = 0;
@@ -421,7 +421,7 @@ openOutputStreams(int option)
 //GB	scanf("%d", &numOfBitStreams);
 	numOfBitStreams = 10;   //GB
 	tp.numOfBitStreams = numOfBitStreams;
-	printf("\n");
+//GB	printf("\n");
 }
 
 
@@ -437,7 +437,7 @@ invokeTestSuite(int option, char *streamFile)
 		case 0:
 			fileBasedBitStreams(streamFile);
 			break;
-		case 1:
+/* GB		case 1:
 			lcg();
 			break;
 		case 2:
@@ -464,14 +464,14 @@ invokeTestSuite(int option, char *streamFile)
 		case 9:
 			SHA1();
 			break;
-			
+GB */			
 		/* INTRODUCE NEW PSEUDO RANDOM NUMBER GENERATORS HERE */
 			
 		default:
 			printf("Error in invokeTestSuite!\n");
 			break;
 	}
-	printf("     Statistical Testing Complete!!!!!!!!!!!!\n\n");
+//GB	printf("     Statistical Testing Complete!!!!!!!!!!!!\n\n");
 }
 
 

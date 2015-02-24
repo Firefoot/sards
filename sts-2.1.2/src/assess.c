@@ -58,6 +58,7 @@ int		computeMetrics(char *s, int test);
 int
 main(int argc, char *argv[])
 {
+        char    file[200];
 	int		i;
 	int		option;			/* TEMPLATE LENGTH/STREAM LENGTH/GENERATOR*/
 	char	*streamFile;	/* STREAM FILENAME     */
@@ -80,10 +81,15 @@ main(int argc, char *argv[])
 	tp.serialBlockLength = 16;
 	tp.linearComplexitySequenceLength = 500;
 	tp.numOfBitStreams = 1;
-	option = generatorOptions(&streamFile);
-//	option = 0;
-	chooseTests();
-//        testVector[0] = 1;  //GB
+//	option = generatorOptions(&streamFile);
+          streamFile = (char*)calloc(200, sizeof(char)); //GB
+//          strcpy(streamFile, "data/data.e");             //GB
+          strcpy(streamFile, "/dev/stdin");             //GB
+	  option = 0;                                    //GB
+//	chooseTests();
+          testVector[0] = 1;             //GB
+          for( i=1; i<=NUMOFTESTS; i++ ) //GB
+            testVector[i] = 1;           //GB
 	fixParameters();
 	openOutputStreams(option);
 	invokeTestSuite(option, streamFile);
@@ -389,10 +395,14 @@ computeMetrics(char *s, int test)
 	if ( sampleSize == 0 )
 		fprintf(summary, " ------     %s\n", testNames[test]);
 	//	else if ( proportion < 0.96 )
-	else if ( (passCount < proportion_threshold_min) || (passCount > proportion_threshold_max))
-		fprintf(summary, "%4d/%-4d *  %s\n", passCount, sampleSize, testNames[test]);
-	else
+	else if ( (passCount < proportion_threshold_min) || (passCount > proportion_threshold_max)){
+		fprintf(summary, "%4d/%-4d *  %s\n", passCount, sampleSize, testNames[test]); //GB
+                if (test != 10 )
+		  printf("%4d/%-4d *  %s\n", passCount, sampleSize, testNames[test]);
+              }
+	else {
 		fprintf(summary, "%4d/%-4d    %s\n", passCount, sampleSize, testNames[test]);
+             }
 	
 	fclose(fp);
 	free(A);

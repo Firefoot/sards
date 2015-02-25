@@ -299,6 +299,8 @@ computeMetrics(char *s, int test)
 	double	*A, *T, chi2, proportion, uniformity, p_hat, tmp;
 	float	c;
 	FILE	*fp;
+	static int total_count = 0;
+	static int fail_count = 0;
 	
 	if ( (fp = fopen(s, "r")) == NULL ) {
 		printf("%s",s);
@@ -391,19 +393,28 @@ computeMetrics(char *s, int test)
 		fprintf(summary, " %8.6f * ", uniformity);
 	else
 		fprintf(summary, " %8.6f   ", uniformity);
-	
-	if ( sampleSize == 0 )
-		fprintf(summary, " ------     %s\n", testNames[test]);
+
+	// Don't count these tests
+	if ( sampleSize == 0 || test == 10 || test == 8) {
+	//	fprintf(summary, " ------     %s\n", testNames[test]);
 	//	else if ( proportion < 0.96 )
-	else if ( (passCount < proportion_threshold_min) || (passCount > proportion_threshold_max)){
-		fprintf(summary, "%4d/%-4d *  %s\n", passCount, sampleSize, testNames[test]); //GB
-                if (test != 10 )
-		  printf("%4d/%-4d *  %s\n", passCount, sampleSize, testNames[test]);
-              }
-	else {
-		fprintf(summary, "%4d/%-4d    %s\n", passCount, sampleSize, testNames[test]);
-             }
-	
+
+	// Count these tests...
+	} else {
+		total_count++;
+
+		// Failed
+		if ((passCount < proportion_threshold_min) || (passCount > proportion_threshold_max)) {
+			fail_count++;
+			printf("%2.1f%%  %4d/%-4d *  %s\n",
+				100.0 - ((double)fail_count * 100 / (double)total_count),
+				passCount, sampleSize, testNames[test]);
+
+		// Passed
+		} else {
+			//eric printf("%d - %4d/%-4d    %s\n", test, passCount, sampleSize, testNames[test]);
+		}
+	}
 	fclose(fp);
 	free(A);
 	

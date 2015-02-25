@@ -45,14 +45,26 @@ Output produced for a non-random data set, such as for and .mp4 here, will be si
 
 and the following for a random data set such as /dev/urandom
  90.0%     6/10   *  ApproximateEntropy
+ 
  91.3%     6/10   *  ApproximateEntropy
+ 
  93.9%     7/10   *  ApproximateEntropy
+ 
  93.5%     7/10   *  ApproximateEntropy
+ 
  95.6%     7/10   *  ApproximateEntropy
+ 
  95.7%     7/10   *  ApproximateEntropy
+ 
  95.4%     6/10   *  ApproximateEntropy
+ 
  95.2%     6/10   *  ApproximateEntropy
+ 
  95.0%     6/10   *  ApproximateEntropy
+ 
  94.8%     6/10   *  ApproximateEntropy
+ 
  94.6%     6/10   *  ApproximateEntropy
+ 
  94.5%     7/10   *  ApproximateEntropy
+ 

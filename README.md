@@ -27,21 +27,21 @@ Run the the assess executable passing in a stream of binary data.
 > $testhost ~/sards$ cat /dev/urandom | ./assess
 
 Output produced for a non-random data set, such as for and .mp4 here, will be similar to following:
- 0.0%     4/10   *  Frequency
- 0.0%     4/10   *  BlockFrequency
- 0.0%     4/10   *  CumulativeSums
- 0.0%     5/10   *  LongestRun
- 0.0%     6/10   *  Rank
- 0.0%     7/10   *  FFT
- 10.0%     2/10   *  ApproximateEntropy
- 9.1%     3/10   *  Serial
- 14.3%     5/10   *  Frequency
- 13.3%     5/10   *  BlockFrequency
- 12.5%     2/10   *  CumulativeSums
- 11.1%     2/10   *  Runs
- 10.5%     5/10   *  LongestRun
- 21.7%     1/10   *  ApproximateEntropy
- 20.8%     3/10   *  Serial
+> <br>0.0%     4/10   *  Frequency </br>
+> <br>0.0%     4/10   *  BlockFrequency </br>
+> <br>0.0%     4/10   *  CumulativeSums </br>
+> <br>0.0%     5/10   *  LongestRun </br>
+> 0.0%     6/10   *  Rank
+> 0.0%     7/10   *  FFT
+> 10.0%     2/10   *  ApproximateEntropy
+> 9.1%     3/10   *  Serial
+> 14.3%     5/10   *  Frequency
+> 13.3%     5/10   *  BlockFrequency
+> 12.5%     2/10   *  CumulativeSums
+> 11.1%     2/10   *  Runs
+> 10.5%     5/10   *  LongestRun
+> 21.7%     1/10   *  ApproximateEntropy
+> 20.8%     3/10   *  Serial
 
 and the following for a random data set such as /dev/urandom
 

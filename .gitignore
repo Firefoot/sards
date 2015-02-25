@@ -2,3 +2,6 @@
 *.lib
 *.a
 *.so
+assess
+obj/*
+!obj/readme.txt

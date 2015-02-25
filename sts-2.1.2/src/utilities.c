@@ -3,6 +3,7 @@ U T I L I T I E S
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
 #include <math.h>
 #include <time.h>
@@ -24,8 +25,9 @@ displayGeneratorOptions()
 	printf("    [6] Modular Exponentiation     [7] Blum-Blum-Shub\n");
 	printf("    [8] Micali-Schnorr             [9] G Using SHA-1\n\n");
 	printf("   Enter Choice: ");
-	scanf("%d", &option);
-	printf("\n\n");
+//GB	scanf("%d", &option);
+	option = 0;
+//GB	printf("\n\n");
 
 	return option;
 }
@@ -39,14 +41,16 @@ generatorOptions(char** streamFile)
 	FILE	*fp;
 	
 	while ( (option < 0) || (option > NUMOFGENERATORS) ) {
-		option = displayGeneratorOptions();
+//GB		option = displayGeneratorOptions();
+                option = 0;
 		switch( option ) {
 			case 0:
-				printf("\t\tUser Prescribed Input File: ");
-				scanf("%s", file);
+//GB				printf("\t\tUser Prescribed Input File: ");
+//GB				scanf("%s", file);
+				strcpy(file, "data/data.e");
 				*streamFile = (char*)calloc(200, sizeof(char));
 				sprintf(*streamFile, "%s", file);
-				printf("\n");
+//GB				printf("\n");
 				if ( (fp = fopen(*streamFile, "r")) == NULL ) {
 					printf("File Error:  file %s could not be opened.\n",  *streamFile);
 					exit(-1);
@@ -54,7 +58,7 @@ generatorOptions(char** streamFile)
 				else
 					fclose(fp);
 				break;
-			case 1:
+/*  GB			case 1:
 				*streamFile = "Linear-Congruential";
 				break;
 			case 2:
@@ -81,15 +85,17 @@ generatorOptions(char** streamFile)
 			case 9:
 				*streamFile = "G using SHA-1";
 				break;
-				
+**/				
 			/* INTRODUCE NEW PRNG NAMES HERE */
 			/*
 			case 10:  *streamFile = "myNewPRNG";
 				break;
 			*/
+/*    GB
 			default:
 				printf("Error:  Out of range - Try again!\n");
 				break;
+*/
 		}
 	}
 	return option;
@@ -100,7 +106,7 @@ void
 chooseTests()
 {
 	int		i;
-	
+/*GB	
 	printf("                S T A T I S T I C A L   T E S T S\n");
 	printf("                _________________________________\n\n");
 	printf("    [01] Frequency                       [02] Block Frequency\n");
@@ -115,8 +121,10 @@ chooseTests()
 	printf("            Enter 0 if you DO NOT want to apply all of the\n");
 	printf("            statistical tests to each sequence and 1 if you DO.\n\n");
 	printf("   Enter Choice: ");
-	scanf("%d", &testVector[0]);
-	printf("\n");
+*/
+//GB	scanf("%d", &testVector[0]);
+	testVector[0] = 1;
+//	printf("\n");
 	if ( testVector[0] == 1 )
 		for( i=1; i<=NUMOFTESTS; i++ )
 			testVector[i] = 1;
@@ -129,7 +137,7 @@ chooseTests()
 		printf("      ");
 		for ( i=1; i<=NUMOFTESTS; i++ ) 
 			scanf("%1d", &testVector[i]);
-		printf("\n\n");
+//GB		printf("\n\n");
 	}
 }
 
@@ -147,6 +155,7 @@ fixParameters()
 		
 	do {
 		counter = 1;
+/*  GB
 		printf("        P a r a m e t e r   A d j u s t m e n t s\n");
 		printf("        -----------------------------------------\n");
 		if ( testVector[TEST_BLOCK_FREQUENCY] == 1 )
@@ -161,10 +170,13 @@ fixParameters()
 			printf("    [%d] Serial Test - block length(m):                  %d\n", counter++, tp.serialBlockLength);
 		if ( testVector[TEST_LINEARCOMPLEXITY] == 1 )
 			printf("    [%d] Linear Complexity Test - block length(M):       %d\n", counter++, tp.linearComplexitySequenceLength);
+
 		printf("\n");
 		printf("   Select Test (0 to continue): ");
-		scanf("%1d", &testid);
-		printf("\n");
+*/
+//GB		scanf("%1d", &testid);
+		testid = 0;
+//GB		printf("\n");
 		
 		counter = 0;
 		if ( testVector[TEST_BLOCK_FREQUENCY] == 1 ) {
@@ -172,7 +184,7 @@ fixParameters()
 			if ( counter == testid ) {
 				printf("   Enter Block Frequency Test block length: ");
 				scanf("%d", &tp.blockFrequencyBlockLength);
-				printf("\n");
+//GB				printf("\n");
 				continue;
 			}
 		}
@@ -181,7 +193,7 @@ fixParameters()
 			if ( counter == testid ) {
 				printf("   Enter NonOverlapping Template Test block Length: ");
 				scanf("%d", &tp.nonOverlappingTemplateBlockLength);
-				printf("\n");
+//GB				printf("\n");
 				continue;
 			}
 		}
@@ -190,7 +202,7 @@ fixParameters()
 			if ( counter == testid ) {
 				printf("   Enter Overlapping Template Test block Length: ");
 				scanf("%d", &tp.overlappingTemplateBlockLength);
-				printf("\n");
+//GB				printf("\n");
 				continue;
 			}
 		}
@@ -199,7 +211,7 @@ fixParameters()
 			if ( counter == testid ) {
 				printf("   Enter Approximate Entropy Test block Length: ");
 				scanf("%d", &tp.approximateEntropyBlockLength);
-				printf("\n");
+//GB				printf("\n");
 				continue;
 			}
 		}
@@ -208,7 +220,7 @@ fixParameters()
 			if ( counter == testid ) {
 				printf("   Enter Serial Test block Length: ");
 				scanf("%d", &tp.serialBlockLength);
-				printf("\n");
+//GB				printf("\n");
 				continue;
 			}
 		}
@@ -217,7 +229,7 @@ fixParameters()
 			if ( counter == testid ) {
 				printf("   Enter Linear Complexity Test block Length: ");
 				scanf("%d", &tp.linearComplexitySequenceLength);
-				printf("\n");
+//GB				printf("\n");
 				continue;
 			}
 		}
@@ -230,13 +242,15 @@ fileBasedBitStreams(char *streamFile)
 {
 	FILE	*fp;
 	int		mode;
-	
+/*	
 	printf("   Input File Format:\n");
 	printf("    [0] ASCII - A sequence of ASCII 0's and 1's\n");
 	printf("    [1] Binary - Each byte in data file contains 8 bits of data\n\n");
 	printf("   Select input mode:  ");
-	scanf("%1d", &mode);
-	printf("\n");
+*/
+//GB	scanf("%1d", &mode);
+	mode = 1; //GB
+//	printf("\n");
 	if ( mode == 0 ) {
 		if ( (fp = fopen(streamFile, "r")) == NULL ) {
 			printf("ERROR IN FUNCTION fileBasedBitStreams:  file %s could not be opened.\n",  streamFile);
@@ -266,7 +280,7 @@ readBinaryDigitsInASCIIFormat(FILE *fp, char *streamFile)
 		printf("Statistical Testing Aborted!\n");
 		return;
 	}
-	printf("     Statistical Testing In Progress.........\n\n");   
+//GB	printf("     Statistical Testing In Progress.........\n\n");   
 	for ( i=0; i<tp.numOfBitStreams; i++ ) {
 		num_0s = 0;
 		num_1s = 0;
@@ -293,7 +307,7 @@ readBinaryDigitsInASCIIFormat(FILE *fp, char *streamFile)
 	free(epsilon);
 }
 
-
+// GB The following function needs to be modified to fit data streaming in from /dev/stdin
 void
 readHexDigitsInBinaryFormat(FILE *fp)
 {
@@ -305,7 +319,7 @@ readHexDigitsInBinaryFormat(FILE *fp)
 		return;
 	}
 
-	printf("     Statistical Testing In Progress.........\n\n");   
+//GB	printf("     Statistical Testing In Progress.........\n\n");   
 	for ( i=0; i<tp.numOfBitStreams; i++ ) {
 		num_0s = 0;
 		num_1s = 0;
@@ -403,10 +417,11 @@ openOutputStreams(int option)
 				numOfOpenFiles++;
 		}
 	}
-	printf("   How many bitstreams? ");
-	scanf("%d", &numOfBitStreams);
+//GB	printf("   How many bitstreams? ");
+//GB	scanf("%d", &numOfBitStreams);
+	numOfBitStreams = 10;   //GB
 	tp.numOfBitStreams = numOfBitStreams;
-	printf("\n");
+//GB	printf("\n");
 }
 
 
@@ -422,7 +437,7 @@ invokeTestSuite(int option, char *streamFile)
 		case 0:
 			fileBasedBitStreams(streamFile);
 			break;
-		case 1:
+/* GB		case 1:
 			lcg();
 			break;
 		case 2:
@@ -449,14 +464,14 @@ invokeTestSuite(int option, char *streamFile)
 		case 9:
 			SHA1();
 			break;
-			
+GB */			
 		/* INTRODUCE NEW PSEUDO RANDOM NUMBER GENERATORS HERE */
 			
 		default:
 			printf("Error in invokeTestSuite!\n");
 			break;
 	}
-	printf("     Statistical Testing Complete!!!!!!!!!!!!\n\n");
+//GB	printf("     Statistical Testing Complete!!!!!!!!!!!!\n\n");
 }
 
 

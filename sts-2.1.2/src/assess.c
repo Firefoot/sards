@@ -58,18 +58,22 @@ int		computeMetrics(char *s, int test);
 int
 main(int argc, char *argv[])
 {
+        char    file[200];
 	int		i;
 	int		option;			/* TEMPLATE LENGTH/STREAM LENGTH/GENERATOR*/
 	char	*streamFile;	/* STREAM FILENAME     */
 	
-
+/*****************  GB **************
 	if ( argc != 2 ) {
 		printf("Usage: %s <stream length>\n", argv[0]);
 		printf("   <stream length> is the length of the individual bit stream(s) to be processed\n");
 		return 0;
 	}
-
-	tp.n = atoi(argv[1]);
+*/
+//GB	tp.n = atoi(argv[1]);
+  while ( 1 == 1)
+  {
+	tp.n = 10000;   //GB
 	tp.blockFrequencyBlockLength = 128;
 	tp.nonOverlappingTemplateBlockLength = 9;
 	tp.overlappingTemplateBlockLength = 9;
@@ -77,8 +81,15 @@ main(int argc, char *argv[])
 	tp.serialBlockLength = 16;
 	tp.linearComplexitySequenceLength = 500;
 	tp.numOfBitStreams = 1;
-	option = generatorOptions(&streamFile);
-	chooseTests();
+//	option = generatorOptions(&streamFile);
+          streamFile = (char*)calloc(200, sizeof(char)); //GB
+//          strcpy(streamFile, "data/data.e");             //GB
+          strcpy(streamFile, "/dev/stdin");             //GB
+	  option = 0;                                    //GB
+//	chooseTests();
+          testVector[0] = 1;             //GB
+          for( i=1; i<=NUMOFTESTS; i++ ) //GB
+            testVector[i] = 1;           //GB
 	fixParameters();
 	openOutputStreams(option);
 	invokeTestSuite(option, streamFile);
@@ -109,7 +120,8 @@ main(int argc, char *argv[])
 	postProcessResults(option);
 	fclose(summary);
 
-	return 1;
+  }
+  return 1;
 }
 
 void
@@ -287,6 +299,8 @@ computeMetrics(char *s, int test)
 	double	*A, *T, chi2, proportion, uniformity, p_hat, tmp;
 	float	c;
 	FILE	*fp;
+	static int total_count = 0;
+	static int fail_count = 0;
 	
 	if ( (fp = fopen(s, "r")) == NULL ) {
 		printf("%s",s);
@@ -379,15 +393,28 @@ computeMetrics(char *s, int test)
 		fprintf(summary, " %8.6f * ", uniformity);
 	else
 		fprintf(summary, " %8.6f   ", uniformity);
-	
-	if ( sampleSize == 0 )
-		fprintf(summary, " ------     %s\n", testNames[test]);
+
+	// Don't count these tests
+	if ( sampleSize == 0 || test == 10 || test == 8) {
+	//	fprintf(summary, " ------     %s\n", testNames[test]);
 	//	else if ( proportion < 0.96 )
-	else if ( (passCount < proportion_threshold_min) || (passCount > proportion_threshold_max))
-		fprintf(summary, "%4d/%-4d *  %s\n", passCount, sampleSize, testNames[test]);
-	else
-		fprintf(summary, "%4d/%-4d    %s\n", passCount, sampleSize, testNames[test]);
-	
+
+	// Count these tests...
+	} else {
+		total_count++;
+
+		// Failed
+		if ((passCount < proportion_threshold_min) || (passCount > proportion_threshold_max)) {
+			fail_count++;
+			printf("%2.1f%%  %4d/%-4d *  %s\n",
+				100.0 - ((double)fail_count * 100 / (double)total_count),
+				passCount, sampleSize, testNames[test]);
+
+		// Passed
+		} else {
+			//eric printf("%d - %4d/%-4d    %s\n", test, passCount, sampleSize, testNames[test]);
+		}
+	}
 	fclose(fp);
 	free(A);
 	

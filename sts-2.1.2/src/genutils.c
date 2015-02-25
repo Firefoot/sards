@@ -172,10 +172,11 @@ void bshr(BYTE *x, int l)
 ******************************************/
 int Mult(BYTE *A, BYTE *B, int LB, BYTE *C, int LC)
 {
-	int		i, j, k, LA;
+	int		i, j, k;
+//GB	int		i, j, k, LA;
 	DIGIT	result;
 
-	LA = LB + LC;
+//GB	LA = LB + LC;
 
 	for ( i=LB-1; i>=0; i-- ) {
 		result = 0;
@@ -497,6 +498,7 @@ void Div(BYTE *x, int lenx, BYTE *n, int lenn)
 **        rather than using a copy of B  *
 **                                       *
 ******************************************/
+//GB void sub(BYTE *A, int LA, BYTE *B, int LB)
 void sub(BYTE *A, int LA, BYTE *B, int LB)
 {
 	BYTE	*tb;

@@ -26,7 +26,7 @@ Modify the makefile as necessary and compile the code
 Run the the assess executable passing in a stream of binary data.
 > $testhost ~/sards$ cat /dev/urandom | ./assess
 
-Output produced for a non-random data set, such as for and .mp4 here, will be similar to following:
+Output produced for a non-random data set, such as for an .mp4 here, will be similar to following:
 > <br>0.0%     4/10   *  Frequency </br>
 > <br>0.0%     4/10   *  BlockFrequency </br>
 > <br>0.0%     4/10   *  CumulativeSums </br>

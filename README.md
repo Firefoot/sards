@@ -19,15 +19,15 @@ Install and Use
 Use git to checkout the current copy of this suite
 From the project directory create the directories that will hold working files during execution and the final test results.
 
-$testhost ~/sards$ experiments/create-dir-script
+> $testhost ~/sards$ experiments/create-dir-script
 
 Modify the makefile as necessary and compile the code
 
 Run the the assess executable passing in a stream of binary data.
-$testhost ~/sards$ cat /dev/urandom | ./assess
+> $testhost ~/sards$ cat /dev/urandom | ./assess
 
 Output produced for a non-random data set, such as for and .mp4 here, will be similar to following:
-0.0%     4/10   *  Frequency
+> 0.0%     4/10   *  Frequency
 0.0%     4/10   *  BlockFrequency
 0.0%     4/10   *  CumulativeSums
 0.0%     5/10   *  LongestRun
@@ -44,7 +44,7 @@ Output produced for a non-random data set, such as for and .mp4 here, will be si
 20.8%     3/10   *  Serial
 
 and the following for a random data set such as /dev/urandom
-90.0%     6/10   *  ApproximateEntropy
+> 90.0%     6/10   *  ApproximateEntropy
 91.3%     6/10   *  ApproximateEntropy
 93.9%     7/10   *  ApproximateEntropy
 93.5%     7/10   *  ApproximateEntropy

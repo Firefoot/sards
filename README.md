@@ -31,30 +31,30 @@ Output produced for a non-random data set, such as for and .mp4 here, will be si
 > <br>0.0%     4/10   *  BlockFrequency </br>
 > <br>0.0%     4/10   *  CumulativeSums </br>
 > <br>0.0%     5/10   *  LongestRun </br>
-> 0.0%     6/10   *  Rank
-> 0.0%     7/10   *  FFT
-> 10.0%     2/10   *  ApproximateEntropy
-> 9.1%     3/10   *  Serial
-> 14.3%     5/10   *  Frequency
-> 13.3%     5/10   *  BlockFrequency
-> 12.5%     2/10   *  CumulativeSums
-> 11.1%     2/10   *  Runs
-> 10.5%     5/10   *  LongestRun
-> 21.7%     1/10   *  ApproximateEntropy
-> 20.8%     3/10   *  Serial
+> <br>0.0%     6/10   *  Rank </br>
+> <br>0.0%     7/10   *  FFT </br>
+> <br>10.0%     2/10   *  ApproximateEntropy </br>
+> <br>9.1%     3/10   *  Serial </br>
+> <br>14.3%     5/10   *  Frequency </br>
+> <br>13.3%     5/10   *  BlockFrequency </br>
+> <br>12.5%     2/10   *  CumulativeSums </br>
+> <br>11.1%     2/10   *  Runs </br>
+> <br>10.5%     5/10   *  LongestRun </br>
+> <br>21.7%     1/10   *  ApproximateEntropy </br>
+> <br>20.8%     3/10   *  Serial </br>
 
 and the following for a random data set such as /dev/urandom
 
-> 90.0%     6/10   *  ApproximateEntropy
-> 91.3%     6/10   *  ApproximateEntropy
-> 93.9%     7/10   *  ApproximateEntropy
-> 93.5%     7/10   *  ApproximateEntropy
-> 95.6%     7/10   *  ApproximateEntropy
-> 95.7%     7/10   *  ApproximateEntropy
-> 95.4%     6/10   *  ApproximateEntropy
-> 95.2%     6/10   *  ApproximateEntropy
-> 95.0%     6/10   *  ApproximateEntropy
-> 94.8%     6/10   *  ApproximateEntropy
-> 94.6%     6/10   *  ApproximateEntropy
-> 94.5%     7/10   *  ApproximateEntropy
+> <br>90.0%     6/10   *  ApproximateEntropy </br>
+> <br>91.3%     6/10   *  ApproximateEntropy </br>
+> <br>93.9%     7/10   *  ApproximateEntropy </br>
+> <br>93.5%     7/10   *  ApproximateEntropy </br>
+> <br>95.6%     7/10   *  ApproximateEntropy </br>
+> <br>95.7%     7/10   *  ApproximateEntropy </br>
+> <br>95.4%     6/10   *  ApproximateEntropy </br>
+> <br>95.2%     6/10   *  ApproximateEntropy </br>
+> <br>95.0%     6/10   *  ApproximateEntropy </br>
+> <br>94.8%     6/10   *  ApproximateEntropy </br>
+> <br>94.6%     6/10   *  ApproximateEntropy </br>
+> <br>94.5%     7/10   *  ApproximateEntropy </br>
  

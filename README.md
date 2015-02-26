@@ -6,7 +6,7 @@ This project was developed to quickly compare variously generated sets of random
 
 NOTE:  All tests from the battery are executed over the incoming data stream, however, the results from Universal test and the NonOverlapping test are currently being discarded for a couple of reasons.  The Universal test is failing for every data stream passed into the unmodified sts-2.1.2 suite and consequently our modification.  The NonOverlapping test produces multiple evaluations over the same batch of streams and therefore skews our results.
 
-DISCLAIMER!   The original suite was menu driven and not conducive to quick and flexible execution. This work is, to put it mildly a hack job of an apparent hack job, based on the sts-2.1.2 test suite from NIST.  Precedence was given to speed of development not to quality of code.  
+DISCLAIMER!   The original suite was menu driven and not conducive to quick and flexible execution. This work is, to put it mildly, a hack job of an apparent hack job, based on the sts-2.1.2 test suite from NIST.  Precedence was given to speed of development not to quality of code.  
 
 The original sts-2.1.2 suite is available from NIST [here](http://csrc.nist.gov/groups/ST/toolkit/rng/documentation_software.html). 
 The documentation for the analyses performed and the code can be found [here](http://csrc.nist.gov/publications/nistpubs/800-22-rev1a/SP800-22rev1a.pdf).
